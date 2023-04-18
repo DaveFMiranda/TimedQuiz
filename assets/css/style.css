@@ -26,15 +26,13 @@ body {
 }
 
 .highscore {
-    grid-column: 1;
-    grid-row: 1;
+    width: 20%;
 }
 
-.timerbox {
-    grid-column: 3;
-    grid-row: 1;
+#timerbox {
     margin-left: auto;
     align-items: right;
+    width: 20%;
 }
 
 .wrapper {

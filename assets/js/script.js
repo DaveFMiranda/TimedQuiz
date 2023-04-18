@@ -1,51 +1,36 @@
-/* START BUTTON
-1. create button
-2. event listener for when you click on the button
 
-// CLICK START BUTTON
-1. clicking start button starts timer
-2. clicking start button brings up first question
 
 
 // TIMER STARTS
-TBD
-1. Need to create the timer in the top-right corner, start it at zero
 
-
-// QUESTION IS PRESENTED
-1. Write question and four answers
-    - space for question, boxes for each answer
-    - event listener for buttons
-        - if wronganswer, display (WRONG!)
-        - if wronganswer, subtract time from timer
-        - if rightanswer, display (CORRECT!)
-
-        THEN... Move to next screen.
-
-
-// QUESTION IS ANSWERED, NEW QUESTION
-
-
-
-// wrong answer subtracts time from clock
-
-
-// game ends when all questions are answered
 
 
 // game ends when timer reaches 0
 
 
 // can save initials and score
+// complete link to "view high scores"
+// get rid of buttons in enter initials function
+// how to stop the timer?
 
-*/
-
-// var timer = //CALL THE TIMER FUNCTION
 var startButton = document.querySelector("#start");
 var questionText = document.querySelector(".card-header");
 var question1 = document.querySelector(".btn");
+var timeLeft = 10;
+var timerEl = document.querySelector("#timerbox")
 
 startButton.addEventListener("click", function() {
+    function updateTimer(){
+        while (timeLeft > 0) {
+            timeLeft--;
+            timerEl.textContent = "Time left: " + timeLeft;
+            if (timeLeft === 0) {
+                enterInitials();
+              }
+        }    
+    }
+    var timerInterval = setInterval(updateTimer, 1000);
+
     questionText.textContent = "Commonly used data types DO NOT include:"
    
     var button1 = document.createElement('button1');
@@ -75,14 +60,12 @@ startButton.addEventListener("click", function() {
     button1.addEventListener("click", function() {
         result.textContent = 'Wrong!';
         question2();
-                //INSERT FUNCTION TO SUBTRACT TIME HERE
-
+        timeLeft -= 5;
     })
     button2.addEventListener("click", function() {
         result.textContent = 'Wrong!';
         question2();
-                //INSERT FUNCTION TO SUBTRACT TIME HERE
-
+        timeLeft -= 5;
     })
     button3.addEventListener("click", function() {
         result.textContent = 'Correct!';
@@ -91,7 +74,7 @@ startButton.addEventListener("click", function() {
     button4.addEventListener("click", function() {
         result.textContent = 'Wrong!';
         question2();
-                //INSERT FUNCTION TO SUBTRACT TIME HERE
+        timeLeft -= 5;
 
     })
 
@@ -107,13 +90,13 @@ function question2() {
     button1.addEventListener("click", function() {
         result.textContent = 'Wrong!';
         question3();
-                //INSERT FUNCTION TO SUBTRACT TIME HERE
+        timeLeft -= 5;
 
     })
     button2.addEventListener("click", function() {
         result.textContent = 'Wrong!';
         question3();
-                //INSERT FUNCTION TO SUBTRACT TIME HERE
+        timeLeft -= 5;
 
     })
     button3.addEventListener("click", function() {
@@ -123,7 +106,7 @@ function question2() {
     button4.addEventListener("click", function() {
         result.textContent = 'Wrong!';
         question3();
-                //INSERT FUNCTION TO SUBTRACT TIME HERE
+        timeLeft -= 5;
     })
 }
 
@@ -137,23 +120,24 @@ function question3() {
     button1.addEventListener("click", function() {
         result.textContent = 'Wrong!';
         question4();
-                //INSERT FUNCTION TO SUBTRACT TIME HERE
+        timeLeft -= 5;
 
     })
     button2.addEventListener("click", function() {
         result.textContent = 'Wrong!';
         question4();
-                //INSERT FUNCTION TO SUBTRACT TIME HERE
+        timeLeft -= 5;
 
     })
     button3.addEventListener("click", function() {
         result.textContent = 'Wrong!';
         question4();
+        timeLeft -= 5;
+
     })
     button4.addEventListener("click", function() {
         result.textContent = 'Correct!';
         question4();
-                //INSERT FUNCTION TO SUBTRACT TIME HERE
     })
 }
 
@@ -167,34 +151,73 @@ function question4() {
     button1.addEventListener("click", function() {
         result.textContent = 'Wrong!';
         enterInitials();
-                //INSERT FUNCTION TO SUBTRACT TIME HERE
+        timeLeft -= 5;
+        stopTimer = true;
 
     })
     button2.addEventListener("click", function() {
         result.textContent = 'Wrong!';
         enterInitials();
-                //INSERT FUNCTION TO SUBTRACT TIME HERE
+        timeLeft -= 5;
+        stopTimer = true;
+
 
     })
     button3.addEventListener("click", function() {
         result.textContent = 'Correct!';
         enterInitials();
+        stopTimer = true;
+
     })
     button4.addEventListener("click", function() {
         result.textContent = 'Wrong!';
         enterInitials();
-                //INSERT FUNCTION TO SUBTRACT TIME HERE
+        timeLeft -= 5;
+        stopTimer = true;
+
     })
 }
 
 function enterInitials() {
-    // All done!
+    questionText.textContent = "All done!"
+    var score = document.createElement('finalScore');
+    score.setAttribute('style', 'fontsize: 20px');
+    score.textContent = "Your final score is " + timeLeft;
+    document.body.appendChild(score);
+    
+   var initialPrompt = prompt;
+
+    var initials = document.createElement('initials');
+    initials.setAttribute('style', 'fontsize: 20px');
+    initials.textContent = "Enter initials:";
+    document.body.appendChild(initials);
+
+    var initialsInput = document.createElement('initialsInput');
+    initials.type = "text";
+    document.body.appendChild(initialsInput);
+
+
+}
+})
+
+
+    /* submit button
+    question.textContent = "All done!"
+    var score = document.createElement('finalScore');
+    score.setAttribute('style', 'fontsize: 20px');
+    score.textContent = "Your final score is " + timeLeft;
+    document.body.appendChild(score);
+
+    var button4 = document.createElement('button4');
+    button4.setAttribute('class', 'btn');
+    button4.textContent = "4. numbers"
+    document.body.appendChild(button4);
     // Your final score is [INSERT FROM TIMER]
     // Enter initials: [form box]
     // submit button
 }
 
-})
+}) */
 
 
    
