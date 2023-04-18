@@ -13,22 +13,41 @@
 // get rid of buttons in enter initials function
 // how to stop the timer?
 
+/*TO DOs:
+1. fix timer
+- get it to stop after the last question
+- get it to stop when it hits zero
+2. create last screen
+3. figure out how to store initials
+- create an array, store initials and score to the array, then last screen call
+the top five scores from the array
+4. figure out how to store score along with initials
+5. create high scores page
+6.  maybe make it look nicer
+7. timer issues:
+- if there's less than five seconds and you get one wrong it keeps going
+- it subtracts too much time for multiple wrong answers
+7. add comments
+8. update readme
+9. deploy
+*/
+
 var startButton = document.querySelector("#start");
 var questionText = document.querySelector(".card-header");
 var question1 = document.querySelector(".btn");
-var timeLeft = 10;
+var timeLeft = 75;
 var timerEl = document.querySelector("#timerbox")
 
 startButton.addEventListener("click", function() {
     function updateTimer(){
-        while (timeLeft > 0) {
             timeLeft--;
             timerEl.textContent = "Time left: " + timeLeft;
-            if (timeLeft === 0) {
+            if (timeLeft == 0) {
+                clearInterval(timerInterval);
                 enterInitials();
               }
-        }    
-    }
+            }
+    
     var timerInterval = setInterval(updateTimer, 1000);
 
     questionText.textContent = "Commonly used data types DO NOT include:"
@@ -179,9 +198,17 @@ function question4() {
 }
 
 function enterInitials() {
+    button1.style.display = "none";
+    button2.style.display = "none";
+    button3.style.display = "none";
+    button4.style.display = "none";
+
+    
     questionText.textContent = "All done!"
     var score = document.createElement('finalScore');
     score.setAttribute('style', 'fontsize: 20px');
+    score.setAttribute('style', 'display: block');
+    score.setAttribute('style', 'margin-top: 100px');
     score.textContent = "Your final score is " + timeLeft;
     document.body.appendChild(score);
     
@@ -189,14 +216,27 @@ function enterInitials() {
 
     var initials = document.createElement('initials');
     initials.setAttribute('style', 'fontsize: 20px');
-    initials.textContent = "Enter initials:";
+    initials.setAttribute('style', 'display: block');
+    initials.textContent = "Enter initials: ";
     document.body.appendChild(initials);
 
-    var initialsInput = document.createElement('initialsInput');
-    initials.type = "text";
+    var initialsInput = document.createElement('input');
+    initialsInput.type = "text";
+    initialsInput.name = "savedInitials";
+    initialsInput.setAttribute('style', 'width: 20%');
+    initialsInput.setAttribute('style', 'height: 15%');
     document.body.appendChild(initialsInput);
 
+    var submitButton = document.createElement("btn");
+    submitButton.setAttribute('class', 'btn');
+    submitButton.textContent = "Submit";
+    document.body.appendChild(submitButton);
 
+    submitButton.addEventListener("click", function() {
+//INSERT FUNCTION FOR FINAL SCREEN
+
+console.log(initialsInput);
+})
 }
 })
 
