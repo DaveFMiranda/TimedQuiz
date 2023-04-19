@@ -1,19 +1,4 @@
-// TIMER STARTS
-
-// game ends when timer reaches 0
-
-// can save initials and score
-// complete link to "view high scores"
-// get rid of buttons in enter initials function
-// how to stop the timer?
-
-/*
-7. add comments
-8. update readme
-9. deploy
-*/
-
-// Setting variables to be used throughout the program.
+// Setting variables to be used throughout the quiz.
 var startButton = document.querySelector("#start");
 var questionText = document.querySelector(".card-header");
 var question1 = document.querySelector(".btn");
